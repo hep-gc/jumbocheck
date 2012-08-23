@@ -28,5 +28,12 @@ This should give you some output that looks like this:
 Installing
 ---------
 
-More to come 
+With git:
+
+    $ git clone git://github.com/hep-gc/jumbocheck.git
+    $ cd jumbocheck
+    $ ./jumbocheck -f ~/host-list.txt
+
+Without git:
+    
 
