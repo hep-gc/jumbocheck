@@ -2,26 +2,26 @@
 # vim: set expandtab ts=4 sw=4:
 
 # Author: Ian Gable <igable@uvic.ca>
+# Copyright (C) 2012 University of Victoria
+# You may distribute under the terms of either the GNU General Public
+# License or the Apache v2 License.
 
 import subprocess
 import re
 import sys
+import signal
 from optparse import OptionParser
 
 def main():
     jumbo_size = 8000
     regular_size = 64
 
-
-
     parser = OptionParser(usage="%prog -r REGULARMTU -j JUMBOMTU -f HOSTLISTFILE",version = "%prog 0.1")
     
     parser.add_option("-r", "--regular-mtu", dest="regular_size",
                                             help="regular packet size", metavar="REGULARMTU")
-   
     parser.add_option("-j", "--jumbo-mtu", dest="jumbo_size",
                                             help="jumbo packet size", metavar="JUMBOMTU")
-    
     parser.add_option("-f", "--file", dest="file",
                                             help="file containing a list of hosts", metavar="HOSTLISTFILE")
     
@@ -34,7 +34,6 @@ def main():
         regular_size = int(options.regular_size)
     if options.jumbo_size:
         jumbo_size = int(options.jumbo_size)
-    
   
     site_list = options.file
     
@@ -47,33 +46,23 @@ def main():
     loss = ""
     jumbo_loss = ""
     
-    explanation = """
-    Show which hosts are reachable with jumbo frame packets.
-    
-    We test by pinging with a 64 byte packet and then an 8000 byte
-    packet. If pinging with that size is successful the value will
-    printed
-    
-    Small_Packet Jumbo_Packet Hostname
-    """
-    #print explanation
-    
     
     for line in file:
-           
-        ping_process = subprocess.Popen([r"ping", "-M", "do", "-s", str(regular_size), "-c", "4", line.strip()],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        
+        # send 4 small packet
+        ping_process = subprocess.Popen([r"ping", "-M", "do", "-s", str(regular_size), "-c", 
+                                            "4", line.strip()],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         output,error = ping_process.communicate();
         loss = re.search("Unreachable",output)
         
         if not loss:
-            jumbo_ping_process = subprocess.Popen([r"ping", "-M", "do", "-s", str(jumbo_size), "-c", "4", line.strip()],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+            #send 4 jumbo packets
+            jumbo_ping_process = subprocess.Popen([r"ping", "-M", "do", "-s", str(jumbo_size), "-c", 
+                                            "4", line.strip()],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
             jumbo_output, jumbo_error = jumbo_ping_process.communicate();
             jumbo_frag = re.search("Frag",jumbo_output)
             jumbo_loss =  re.search('100% packet loss', jumbo_output)
         
-        #loss, mean_rtt, average_rtt = ping.quiet_ping(line.strip(),2,4,regular_size)
-        #jumbo_loss, jumbo_mean_rtt, jumbo_average_rtt = ping.quiet_ping(line.strip(),2,4,jumbo_size)
-    
         if loss:
             print " x    x %s unreachable" % (line.strip())
         elif jumbo_frag:
@@ -88,5 +77,10 @@ def main():
     
     file.close()
  
+#handle Crtl-C
+def term_handler(signal, handler):
+    sys.exit()
 
+
+signal.signal(signal.SIGINT, term_handler)
 main()   
