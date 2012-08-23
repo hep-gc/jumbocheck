@@ -10,6 +10,13 @@ It sends two pings one set with a smaller size packet (default 64 bytes) that sh
 This program depends on ping and as a result will be fragile if
 the output of this program changes. It has only been tested on Scientific Linux 6
 
+Requirement
+----------
+
+Obviously to get anthing useful from this script you need to have an interface which
+supports jumbo frames. I suspect this this will work on most python 2.4+ but I haven't tested. 
+It also depends on your ping working something like my ping.
+
 Usage
 -------
     $ ./jumbocheck --regular-mtu 64 --jumbo-mtu 8000 --file host-list.txt
