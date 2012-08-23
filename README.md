@@ -35,5 +35,9 @@ With git:
     $ ./jumbocheck -f ~/host-list.txt
 
 Without git:
+    $ wget https://github.com/downloads/hep-gc/jumbocheck/jumbocheck-0.1.tar.gz
+    $ tar xzvf jumbocheck-0.1.tar.gz
+    $ cd jumbocheck-0.1/
+    $ ./jumbocheck -f ~/host-list.txt
     
 
