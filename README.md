@@ -10,7 +10,7 @@ It sends two pings one set with a smaller size packet (default 64 bytes) that sh
 This program depends on ping and as a result will be fragile if
 the output of this program changes. It has only been tested on Scientific Linux 6
 
-Requirement
+Requirements
 ----------
 
 Obviously to get anthing useful from this script you need to have an interface which
