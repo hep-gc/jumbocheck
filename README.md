@@ -49,3 +49,11 @@ Without git:
     $ ./jumbocheck -f ~/host-list.txt
     
 
+Hints for LCG sites
+------------------
+
+Make your list of hosts:
+
+    $ lcg-infosites --vo atlas se | awk '/SRM/' | awk '{print $4;}' | sort -u > unique-srms.txt
+    
+
