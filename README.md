@@ -30,7 +30,16 @@ This should give you some output that looks like this:
 64    x host1.edu.au                        dropped
 64 8000 host2.hepnetcanada.ca               jumbo
 64    x host3.something.com                 fragmented
+x     x host4.paranoid.com                  unreachable
 ```
+
+| *code*        | *meaning* |
+| ------------- | ------- |
+| unreachable   | Host is not reachable with an ICMP ping. It Could be blocked or the hosts is down. |
+| jumbo_dropped | The jumbo packet was dropped. |
+| fragmented    | The ping worked but the packet was fragmented |
+| jumbo         | The packed reached the host intacted at full size |
+
 
 Installing
 ---------
