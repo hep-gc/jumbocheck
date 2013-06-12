@@ -1,4 +1,4 @@
-jumbocheck 0.1
+jumbocheck 0.2
 ================
 
 Checks to see if a list of hosts can be reached without having
@@ -38,7 +38,7 @@ x     x host4.paranoid.com                  unreachable
 | unreachable   | Host is not reachable with an ICMP ping. It Could be blocked or the hosts is down. |
 | jumbo_dropped | The jumbo packet was dropped. |
 | fragmented    | The ping worked but the packet was fragmented |
-| jumbo         | The packed reached the host intacted at full size |
+| jumbo         | The packet reached the host intacted at full size |
 
 
 Installing
@@ -52,9 +52,9 @@ With git:
 
 Without git:
 
-    $ wget https://github.com/downloads/hep-gc/jumbocheck/jumbocheck-0.1.tar.gz
-    $ tar xzvf jumbocheck-0.1.tar.gz
-    $ cd jumbocheck-0.1/
+    $ wget https://github.com/hep-gc/jumbocheck/archive/v0.2.tar.gz -O jumbocheck-0.2.tar.gz
+    $ tar xzvf jumbocheck-0.2.tar.gz
+    $ cd jumbocheck-0.2/
     $ ./jumbocheck -f ~/host-list.txt
     
 
