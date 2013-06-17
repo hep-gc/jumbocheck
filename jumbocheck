@@ -60,13 +60,15 @@ def main():
             jumbo_ping_process = subprocess.Popen([r"ping", "-M", "do", "-s", str(jumbo_size), "-c", 
                                             "4", line.strip()],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
             jumbo_output, jumbo_error = jumbo_ping_process.communicate();
-            jumbo_frag = re.search("Frag",jumbo_output)
+            #jumbo_frag = re.search("Frag",jumbo_output)
+            jumbo_frag = re.search("From (.+?) icmp_seq=1 Frag", jumbo_output)
             jumbo_loss =  re.search('100% packet loss', jumbo_output)
         
         if loss:
             print " x    x %s unreachable" % (line.strip().ljust(35))
         elif jumbo_frag:
-            print "%i    x %s fragmented" % (regular_size, line.strip().ljust(35))
+            #print "%i    x %s fragmented" % (regular_size, line.strip().ljust(35))
+            print "%i    x %s fragmented %s" % (regular_size, line.strip().ljust(35), jumbo_frag.group(1))
         elif jumbo_loss:
             print "%i    x %s jumbo_dropped" % (regular_size, line.strip().ljust(35))
         else:
