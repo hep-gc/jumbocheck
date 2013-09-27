@@ -52,9 +52,9 @@ With git:
 
 Without git:
 
-    $ wget https://github.com/hep-gc/jumbocheck/archive/v0.2.tar.gz -O jumbocheck-0.2.tar.gz
-    $ tar xzvf jumbocheck-0.2.tar.gz
-    $ cd jumbocheck-0.2/
+    $ wget https://github.com/hep-gc/jumbocheck/archive/v0.2.1.tar.gz -O jumbocheck-0.2.1.tar.gz
+    $ tar xzvf jumbocheck-0.2.1.tar.gz
+    $ cd jumbocheck-0.2.1/
     $ ./jumbocheck -f ~/host-list.txt
     
 
