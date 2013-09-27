@@ -1,4 +1,4 @@
-jumbocheck 0.2
+jumbocheck 0.2.1
 ================
 
 Checks to see if a list of hosts can be reached without having
@@ -64,5 +64,11 @@ Hints for LCG sites
 Make your list of hosts:
 
     $ lcg-infosites --vo atlas se | awk '/SRM/' | awk '{print $4;}' | sort -u > unique-srms.txt
+    
+Contributors
+-------------
+
+Ian Gable <igable@uvic.ca>
+Florent Parent <florent.parent@calculquebec.ca>
     
 
