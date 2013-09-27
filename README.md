@@ -68,7 +68,7 @@ Make your list of hosts:
 Contributors
 -------------
 
-Ian Gable <igable@uvic.ca>
-Florent Parent <florent.parent@calculquebec.ca>
+- Ian Gable <igable@uvic.ca>
+- Florent Parent <florent.parent@calculquebec.ca>
     
 
