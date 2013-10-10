@@ -70,5 +70,6 @@ Contributors
 
 - Ian Gable <igable@uvic.ca>
 - Florent Parent <florent.parent@calculquebec.ca>
+- Jason Chong <jchong@scinet.utoronto.ca>
     
 
